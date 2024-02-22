@@ -1,0 +1,15 @@
+SELECT 'sugar_based' as INGREDIENT_TYPE, sum(TOTAL_ORDER) as TOTAL_ORDER
+FROM FIRST_HALF
+WHERE FLAVOR in (SELECT FLAVOR
+                FROM ICECREAM_INFO
+                WHERE INGREDIENT_TYPE = 'sugar_based')
+
+UNION ALL
+
+SELECT  'fruit_based' as INGREDIENT_TYPE, sum(TOTAL_ORDER) as TOTAL_ORDER
+FROM FIRST_HALF
+WHERE FLAVOR in (SELECT FLAVOR
+                FROM ICECREAM_INFO
+                WHERE INGREDIENT_TYPE = 'fruit_based')
+                
+ORDER BY TOTAL_ORDER;
